@@ -1,0 +1,40 @@
+package swing;
+
+// Create a package and import all the required packages.
+import java.awt.*;
+improt javax.swing.*;
+
+//Create a class with the name SwingFlowLayout and create a constructor that should be same as class name and create a frame also.
+
+public class SwingFlowLayout{
+JFrame f;
+SwingFlowLayout();
+
+//Write the component elements and create a button to each and every component.
+
+JButton b1=new JButton("S");
+JButton b2=new JButton("L");
+JButton b4=new JButton("E");
+JButton b5=new JButton("S");
+JButton b6=new JButton("S");
+JButton b7=new JButton("O");
+JButton b8=new JButton("N");
+
+//Add the object of buttons to the frame then components will be placed in frame.
+
+f.add(b1);f.add(b2);f.add(b3);f.add(b4);f.add(b5);f.add(b6);f.add(b7);f.add(b8);
+
+Set the alignment of Flowlayout as center or right or left and create the title, size to the window application. 
+
+f.setlayout(new FlowLayout(FlowLayout.CENTER));
+// setting flow layout of center alignment
+f.setTitle("FlowLayout");
+f.setSize(300,300);
+f.setVisible(true);
+
+//Create the main method
+
+public static void main(String[] args) {
+new SwingFlowLayout();
+}
+
