@@ -1,0 +1,84 @@
+package swing;//create a package
+ 
+import java.awt.EventQueue;//import all the required packages
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JFrame;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
+ 
+public class PopMenuExample extends JFrame {//create a class that should extend JFrame
+ 
+    private JPopupMenu pmenu;
+ 
+    public PopMenuExample() {//create constructor
+ 
+        initUI();
+    }
+ 
+    private void initUI() {
+ 
+        createPopupMenu();
+ 
+        setTitle("PopupMenu");//create window title
+        setSize(300, 250);//create size
+        setLocationRelativeTo(null);//set the location of the window at center of the screen
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//to close the window
+    }
+ 
+    private void createPopupMenu() {
+ 
+        pmenu = new JPopupMenu();//JPopupMenu creates popup menu
+         
+        JMenuItem maxMi = new JMenuItem("Maximize");//popup menu consists of JMenu items
+        maxMi.addActionListener(new ActionListener() {
+             
+            @Override
+            public void actionPerformed(ActionEvent e) {
+ 
+                if (getExtendedState() != JFrame.MAXIMIZED_BOTH) {//to determine the state of the frame
+                    setExtendedState(JFrame.MAXIMIZED_BOTH);
+                }
+ 
+            }
+        });
+ 
+        pmenu.add(maxMi);//menu items will be inserted into the pop up menu
+ 
+        JMenuItem exitMi = new JMenuItem("Exit");
+        exitMi.addActionListener(new ActionListener() {
+             
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+ 
+        pmenu.add(exitMi);
+ 
+        addMouseListener(new MouseAdapter() {
+ 
+            @Override
+            public void mouseReleased(MouseEvent e) {
+ 
+                if (e.getButton() == MouseEvent.BUTTON3) {//if user clicks on mouse, MouseEvent.BUTTON3 enables the popup for right click
+                    pmenu.show(e.getComponent(), e.getX(), e.getY());
+                }
+            }
+        });
+    }
+ 
+    public static void main(String[] args) {
+ 
+        EventQueue.invokeLater(new Runnable() {//The invokeLater() method places the application on the Swing Event Queue. It is used to ensure that all UI updates are concurrency-safe.
+             
+            @Override
+            public void run() {
+                PopMenuExample pm = new PopMenuExample();//created object pm
+                pm.setVisible(true);//it should always be as true to visible the window.
+            }
+        });
+    }
+}
