@@ -1,0 +1,89 @@
+package swing;//created a package 
+ 
+import java.awt.EventQueue;//import required packages 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+ 
+ 
+public class ExampleSubMenu extends JFrame {//created a class that should extend JFrame
+ 
+    public ExampleSubMenu() {//created a constructor
+         
+        initUI();
+    }
+ 
+    private void initUI() {
+ 
+        createMenuBar();//create menubar
+ 
+        setTitle("Submenu");//title of the window
+        setSize(360, 250);//size of the window
+        setLocationRelativeTo(null);//to set the window in center of the screen
+        setDefaultCloseOperation(EXIT_ON_CLOSE);//to close the window
+    }
+     
+    private void createMenuBar() {
+         
+        JMenuBar menubar = new JMenuBar();//menubar has been created
+         
+        ImageIcon iconNew = new ImageIcon("new.png");//created new box
+        ImageIcon iconOpen = new ImageIcon("open.png");//created open box
+        ImageIcon iconSave = new ImageIcon("save.png");//created save 
+        ImageIcon iconExit = new ImageIcon("exit.png");//created exit
+ 
+        JMenu fileMenu = new JMenu("File");
+ 
+        JMenu impMenu = new JMenu("Import");//created import also
+ 
+        JMenuItem newsfMi = new JMenuItem("Import newsfeed list...");//click on import user get this i.e used JMenuItem class.
+        JMenuItem bookmMi = new JMenuItem("Import bookmarks...");//click on import user get this i.e used JMenuItem class.
+        JMenuItem mailMi = new JMenuItem("Import mail...");//click on import user get this i.e used JMenuItem class.
+ 
+        impMenu.add(newsfMi);
+        impMenu.add(bookmMi);
+        impMenu.add(mailMi);
+ 
+        JMenuItem newMi = new JMenuItem("New", iconNew);//created new icon with JMenuItem class
+        JMenuItem openMi = new JMenuItem("Open", iconOpen);//created open icon with JMenuItem class
+        JMenuItem saveMi = new JMenuItem("Save", iconSave);//created save icon with JMenuItem class
+ 
+        JMenuItem exitMi = new JMenuItem("Exit", iconExit);//created exit icon with JMenuItem class
+        exitMi.setToolTipText("Exit application");//application will be closed
+ 
+        exitMi.addActionListener(new ActionListener() {//ActionListener needs to be performed to close the application
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                System.exit(0);
+            }
+        });
+ 
+        fileMenu.add(newMi);//to add the elements
+        fileMenu.add(openMi);
+        fileMenu.add(saveMi);
+        fileMenu.addSeparator();
+        fileMenu.add(impMenu);
+        fileMenu.addSeparator();
+        fileMenu.add(exitMi);
+ 
+        menubar.add(fileMenu);//menubar will have the file menu
+ 
+        setJMenuBar(menubar);        
+    }
+     
+    public static void main(String[] args) {//main method
+         
+        EventQueue.invokeLater(new Runnable() {//The invokeLater() method places the application on the Swing Event Queue. It is used to ensure that all UI updates are concurrency-safe.
+            @Override
+            public void run() {
+                 
+                ExampleSubMenu ex = new ExampleSubMenu();
+                ex.setVisible(true);
+            }
+        });
+    }
+}
