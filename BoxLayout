@@ -37,3 +37,22 @@ bottom.add(Box.createRigidArea(new Dimension(0,15)));
 
 /*Set the title, bounds to the window and write the function to close the window application and write the function to place the window 
 in center of screen*/
+
+setTitle("Two Buttons");
+setSize(300,150);
+setDefalutCloseOperation(JFrame.EXIT_ON_CLOSE);
+setLocationRelativeTo(null);
+
+//Write the main method and create the object to the class name to visible the window application.
+
+public static void main(String[] args) {
+SwingUtilities.invokeLater(new Runnable() {
+public void run( ) {
+BoxLayout1 ex= new BoxLayout1( )
+ex.setvisible(true);
+}
+});
+}}
+}
+}
+}
