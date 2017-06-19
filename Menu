@@ -1,0 +1,66 @@
+package swing;//create a package
+ 
+import java.awt.EventQueue;//import all the required packages
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+ 
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+ 
+public class MenuExample extends JFrame {//created a class that should extend JFrame
+ 
+    public MenuExample() {//created consructor
+ 
+        initUI();
+    }
+ 
+    private void initUI() {
+         
+        createMenuBar();
+ 
+        setTitle("Menu");//set the title of the window
+        setSize(300, 200);//set the size of the window
+        setLocationRelativeTo(null);//to set the window in center of the screen
+        setDefaultCloseOperation(EXIT_ON_CLOSE);//to close the windoe
+    }
+ 
+    private void createMenuBar() {
+ 
+        JMenuBar menubar = new JMenuBar();//menu created
+        ImageIcon icon = new ImageIcon("quit.png");//quit image icon created
+ 
+        JMenu file = new JMenu("File");//object is created with JMenu class
+        file.setMnemonic(KeyEvent.VK_F);//depends on the keyboard actions
+ 
+        JMenuItem eMenuItem = new JMenuItem("Quit", icon);//menu item has been created with JMenuItem class
+        eMenuItem.setMnemonic(KeyEvent.VK_E);//keyboard events will be performed
+        eMenuItem.setToolTipText("Quit the application");//window will be closed.
+        eMenuItem.addActionListener(new ActionListener() {//added ActionListener to terminate the application
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                System.exit(0);
+            }
+        });
+ 
+        file.add(eMenuItem);
+        menubar.add(file);//menubar will have the file
+ 
+        setJMenuBar(menubar);
+    }
+ 
+    public static void main(String[] args) {//main method
+ 
+        EventQueue.invokeLater(new Runnable() {//The invokeLater() method places the application on the Swing Event Queue. It is used to ensure that all UI updates are concurrency-safe.
+ 
+            @Override
+            public void run() {
+                MenuExample ex = new MenuExample();
+                ex.setVisible(true);
+            }
+        });
+    }
+}
