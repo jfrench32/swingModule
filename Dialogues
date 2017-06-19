@@ -1,0 +1,122 @@
+package swing;
+import java.awt.Container;//developer needs to import all the required packages 
+import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.GroupLayout;
+import static javax.swing.GroupLayout.DEFAULT_SIZE;
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+ 
+public class SwingDialogues extends JFrame {//created the class and that should must extends JFrame
+     
+    private JPanel pnl;
+ 
+    public SwingDialogues() {
+ 
+        initUI();//method
+    }
+ 
+    private void initUI() {
+         
+        pnl = (JPanel) getContentPane();
+ 
+        JButton warBtn = new JButton("Alert");//message dialog
+        JButton errBtn = new JButton("Exception");//message dialog
+        JButton queBtn = new JButton("Question");//message dialog
+        JButton infBtn = new JButton("Quit");//message dialog
+         
+        warBtn.addActionListener(new ActionListener() {//ActionListener() is a interface that needs to be implemented for ActionEvent
+ 
+            @Override
+            public void actionPerformed(ActionEvent event) {//for every button developer has to create actionPerformed
+                JOptionPane.showMessageDialog(pnl, "A warning call!",//to get the message dialogue,developer has to create a method i.e is  showMessageDialog() of JOptionPane ,provide parent of the dialogue, text, title, message type.
+                        "Warning", JOptionPane.WARNING_MESSAGE);
+            }
+        });        
+ 
+        errBtn.addActionListener(new ActionListener() {
+ 
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                JOptionPane.showMessageDialog(pnl, "Could not open file!",
+                        "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        });
+ 
+        queBtn.addActionListener(new ActionListener() {
+ 
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                JOptionPane.showMessageDialog(pnl, "Are you sure to Restart?",
+                        "Question", JOptionPane.QUESTION_MESSAGE);
+            }
+        });
+ 
+        infBtn.addActionListener(new ActionListener() {
+ 
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                JOptionPane.showMessageDialog(pnl, "Download completed.",
+                        "Information", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+ 
+        createLayout(warBtn, errBtn , queBtn, infBtn);
+ 
+        setTitle("Message dialogs");//set the title
+        setSize(300, 200);//set the bounds
+        setLocationRelativeTo(null);//it means that frame needs to be at center of the system
+        setDefaultCloseOperation(EXIT_ON_CLOSE);//to close the window
+    }
+ 
+    private void createLayout(JComponent... arg) {
+ 
+        Container pane = getContentPane();
+        GroupLayout gl = new GroupLayout(pane);
+        pane.setLayout(gl);
+ 
+        gl.setAutoCreateGaps(true);
+ 
+        gl.setHorizontalGroup(gl.createSequentialGroup()
+                .addContainerGap(DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(gl.createParallelGroup()
+                        .addComponent(arg[0])
+                        .addComponent(arg[2]))
+                .addGroup(gl.createParallelGroup()
+                        .addComponent(arg[1])
+                        .addComponent(arg[3]))
+                .addContainerGap(DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+ 
+        gl.setVerticalGroup(gl.createSequentialGroup()
+                .addContainerGap(DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(gl.createParallelGroup()
+                        .addComponent(arg[0])
+                        .addComponent(arg[1]))
+                .addGroup(gl.createParallelGroup()
+                        .addComponent(arg[2])
+                        .addComponent(arg[3]))
+                .addContainerGap(DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+ 
+        gl.linkSize(arg[0], arg[1], arg[2], arg[3]);
+ 
+        pack();
+    }
+ 
+    public static void main(String[] args) {
+ 
+        EventQueue.invokeLater(new Runnable() {
+ 
+            @Override
+            public void run() {
+                SwingDialogues md = new SwingDialogues();
+                md.setVisible(true);
+            }
+        });
+    }
+}
