@@ -1,0 +1,63 @@
+package swing;
+ 
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.GroupLayout;
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+ 
+public class QuitButtonEx extends JFrame {
+//QuitButtonEx should inherit the properties of the JFrame.
+    public QuitButtonEx() {
+ 
+        initUI();
+    }
+    private void initUI() {
+        JButton quitButton = new JButton("Quit");//created a button component
+        quitButton.addActionListener(new ActionListener() {//plug an action listener to the button.
+            @Override
+            public void actionPerformed(ActionEvent event) {//listener's actionPerformed() method will be called when we click on the button.
+                System.exit(0);//to terminate the application.
+            }
+        });
+ 
+        createLayout(quitButton);
+ 
+        setTitle("Quit button");
+        setSize(300, 200);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+         
+    }
+ 
+    private void createLayout(JComponent... arg) {//default layout manager of a content pane is the BorderLayout manager.
+ 
+        Container pane = getContentPane();
+        GroupLayout gl = new GroupLayout(pane);//developer use the GroupLayout manager which is more powerful and flexible.
+        pane.setLayout(gl);
+ 
+        gl.setAutoCreateContainerGaps(true);//setAutoCreateContainerGaps() method creates gaps between components and the edges of the container.
+ 
+        gl.setHorizontalGroup(gl.createSequentialGroup()
+                .addComponent(arg[0])
+        );
+ 
+        gl.setVerticalGroup(gl.createSequentialGroup()
+                .addComponent(arg[0])
+        );
+    }
+    public static void main(String[] args) {
+ 
+        EventQueue.invokeLater(new Runnable() {//default method
+         
+            @Override
+            public void run() {
+                QuitButtonEx ex = new QuitButtonEx();
+                ex.setVisible(true);//window will be visible here 
+            }
+        });
+    }
