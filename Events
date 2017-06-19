@@ -1,0 +1,33 @@
+package swing;
+ 
+import java.awt.*;  
+import java.awt.event.*;  
+   
+class AEvent extends Frame implements ActionListener{  
+TextField tf;  
+AEvent(){  
+   
+tf=new TextField();  //creating textfield
+tf.setBounds(60,50,170,20);  //creating bounds to the frame
+   
+Button b=new Button("click me");  //if user click alerts will be passed
+b.setBounds(100,120,80,30);  //creating bounds to the button box
+   
+b.addActionListener(this);  //after clicking on button it will be implemented 
+   
+add(b);add(tf);  
+   
+setSize(300,300);  //creating size
+setLayout(null);  
+setVisible(true);  //it should always be as true
+setBackground(Color.red); //it depends on user requirements
+}  
+   
+public void actionPerformed(ActionEvent e){  
+tf.setText("SPlessons");  
+}  
+   
+public static void main(String args[]){  //here writing main method
+new AEvent();  
+}  
+}
