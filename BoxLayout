@@ -1,0 +1,39 @@
+// Create a package and import all the required packages.
+
+package swing;
+
+import java.awt.Dimension;
+import Javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+
+//Create a class with name BoxLayout that should extend JFrame to inherit the properties and create a constructor that should be same as class name.
+
+public class BoxLayout1 extends JFrame {
+public BoxLayout(){
+initUI();
+}
+
+//Create two panels, one is vertical panel and another one is horizontal panel. Vertical panel is default panel and the bottom panel is horizontal panel (x_axis).
+JPanel basic= new JPanel();
+basic.setLayout(new BoxLayout(basic, BoxLayout.Y_AXIS));
+add(basic);
+basic.add(Box.createVerticalGlue());
+JPanel bottom = new JPanel();
+bottom.setAlignmentX(1f);
+bottom.setLayout(new BoxLayout(bottom, BoxLayout.X_AXIS));
+
+//Create two buttons, and provide the space between the components by using rigid area.
+
+JButton ok= new JButton("OK")
+JButton close = new JButton("Close);
+bottom.add(ok);
+bottom.add(Box.CreateRigidArea(new Dimension(5,0)));
+bottom.add(close);
+bottom.add(Box.createRigidArea(new Dimension(0,15)));
+
+/*Set the title, bounds to the window and write the function to close the window application and write the function to place the window 
+in center of screen*/
