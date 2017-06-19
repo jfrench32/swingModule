@@ -1,0 +1,26 @@
+package swing;
+import java.awt.EventQueue;
+import javax.swing.JFrame;
+public class SimpleWindow extends JFrame {
+    //SimpleWindow will inherit the properties from the JFrame component
+    public SimpleWindow() {
+        initUI();//create a method
+    }
+    private void initUI() {   
+        setTitle("Simple example");//set the title
+        setSize(300, 200);//set the size
+        setLocationRelativeTo(null);//set the window to center
+        setDefaultCloseOperation(EXIT_ON_CLOSE);//to close the window
+    }
+    public static void main(String[] args) {
+        EventQueue.invokeLater(new Runnable() 
+        //The invokeLater() method places the application on the Swing Event Queue. It is used to ensure that all UI updates are concurrency-safe.
+        {
+            @Override
+            public void run() {
+                SimpleWindow sw = new SimpleWindow();//created the instance
+                sw.setVisible(true);//to visible the window
+            }
+        });
+    }
+}
