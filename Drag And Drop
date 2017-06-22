@@ -1,0 +1,41 @@
+package swing;//created a package as swing
+ 
+import javax.swing.JButton;//import all the required packages
+import javax.swing.JFrame;
+import javax.swing.JTextField;
+import javax.swing.TransferHandler;
+ 
+ 
+public class DragandDrop extends JFrame {//created a class as DragandDrop that should extend JFrame
+ 
+    JTextField field;//creating a text field
+    JButton button;//creating a button 
+ 
+    public DragandDrop() {
+ 
+        setTitle("Drag & Drop");//created title
+ 
+        setLayout(null);
+ 
+        button = new JButton("Button");//created a button
+        button.setBounds(200, 50, 90, 25);//setting sizes to the button.
+ 
+        field = new JTextField();//creatd a textfield
+        field.setBounds(30, 50, 150, 25);//setting sizes to the text field
+ 
+        add(button);//button added
+        add(field);//text added
+ 
+        field.setDragEnabled(true);//enabling dragging support to the text field.
+        button.setTransferHandler(new TransferHandler("text"));//created a class TransferHandler that can send the data between the components.
+ 
+        setSize(330, 150);//creating window size.
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//to close the window.
+        setLocationRelativeTo(null);//set the window location on the screen.
+        setVisible(true);//to visible the window
+    }
+ 
+    public static void main(String[] args) {//created main method.
+        new DragandDrop();
+    }
+}
